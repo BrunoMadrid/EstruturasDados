@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+
+typedef struct {
+
+    int matricula;
+
+    char nome[100];
+
+}Aluno;
+
+void popula(Aluno *vetor, int n){
+
+    srand(time (NULL));
+    for (; n>0; n--){
+
+        vetor[n-1].matricula= rand()%100;
+        printf("Nome do caboclo: \n");
+        scanf("%s", vetor[n-1].nome);
+
+    }
+}
+
+void exibe(Aluno *vetor, int n){
+
+    int i;
+
+    for(i=0; i<n; i++){
+
+        printf("Posicao: %d Matricula: %d Nome: %s \n",i,vetor[i].matricula, vetor[i].nome);
+    }
+
+}
+
+int main()
+{
+    Aluno*vetor;
+    int n;
+
+    printf("Qual a quantidade de alunos irah cadastrar? \n");
+    scanf("%d",&n);
+
+    vetor= malloc(sizeof(Aluno)*n);
+
+    popula(vetor, n);
+    exibe(vetor, n);
+
+    free(vetor);
+
+    return(1);
+}
